@@ -14,8 +14,6 @@ function timeout() {
   },1000) 
 }
 
-// timeout()
-
 let $animal = document.querySelector('.animal')
 let $front = document.querySelector('.front')
 let $back = document.querySelector('.back')
@@ -25,13 +23,6 @@ const animalList = [...document.querySelectorAll('.animal')]
 
 console.log(animalList)
 
-
-
-$animal.addEventListener('click', () => {
-  show()
-})
-
-
 function show() {
   for(let i=0; i<24; i++) {
     animalList[i].firstElementChild.style.transform = `rotateY(${180}deg)`
@@ -39,3 +30,28 @@ function show() {
   }
 }
 
+function showBack() {
+  let i = 0
+
+  setInterval(function(){
+    if (animalList[i]) {
+      animalList[i].firstElementChild.style.transform = `rotateY(${180}deg)`
+      animalList[i].lastElementChild.style.transform = `rotateY(${0}deg)`
+      
+      i++
+    } else if (i>24) {
+      clearInterval(showBack)
+    }
+  },50)
+  showFront()
+}
+showBack()
+
+function showFront() {
+  setInterval(function() {
+    for(let i=0; i<24; i++) {
+      animalList[i].firstElementChild.style.transform = `rotateY(${0}deg)`
+      animalList[i].lastElementChild.style.transform = `rotateY(${-180}deg)`
+    }
+  },2000)
+}
