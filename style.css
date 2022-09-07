@@ -64,7 +64,6 @@
 }
 
 .front {
-  background-image: url(/assets/animals/zoo.png);
   background-size: 90px;
   transform: rotateY(0deg);
 }
@@ -80,10 +79,4 @@
 
 .animal:hover .back {
   transform: rotateY(0deg);
-}
-
-.animal .back .img {
-  position: absolute;
-  width: 30px;
-  height: 30px;
 }
