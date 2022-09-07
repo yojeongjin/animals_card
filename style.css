@@ -82,40 +82,8 @@
   transform: rotateY(0deg);
 }
 
-.animal:nth-child(1) .back,
-.animal:nth-child(2) .back { background-image: url(/assets/animals/whale.png);}
-
-.animal:nth-child(3) .back,
-.animal:nth-child(4) .back { background-image: url(/assets/animals/tiger.png);}
-
-.animal:nth-child(5) .back,
-.animal:nth-child(6) .back { background-image: url(/assets/animals/sheep.png);}
-
-.animal:nth-child(7) .back,
-.animal:nth-child(8) .back { background-image: url(/assets/animals/parrot.png);}
-
-.animal:nth-child(9) .back,
-.animal:nth-child(10) .back { background-image: url(/assets/animals/octopus.png);}
-
-.animal:nth-child(11) .back,
-.animal:nth-child(12) .back { background-image: url(/assets/animals/koala.png);}
-
-.animal:nth-child(13) .back,
-.animal:nth-child(14) .back { background-image: url(/assets/animals/hen.png);}
-
-.animal:nth-child(15) .back,
-.animal:nth-child(16) .back { background-image: url(/assets/animals/giraffe.png);}
-
-.animal:nth-child(17) .back,
-.animal:nth-child(18) .back { background-image: url(/assets/animals/frog.png);}
-
-.animal:nth-child(19) .back,
-.animal:nth-child(20) .back { background-image: url(/assets/animals/fox.png);}
-
-.animal:nth-child(21) .back,
-.animal:nth-child(22) .back { background-image: url(/assets/animals/flamingo.png);}
-
-.animal:nth-child(23) .back,
-.animal:nth-child(24) .back { background-image: url(/assets/animals/clownfish.png);}
-
-
+.animal .back .img {
+  position: absolute;
+  width: 30px;
+  height: 30px;
+}
