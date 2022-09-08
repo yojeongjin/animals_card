@@ -19,7 +19,8 @@ const animalsImg =
 ['whale', 'tiger', 'sheep', 'parrot', 'octopus', 'koala', 'hen', 'giraffe', 'frog', 'fox', 'flamingo', 'clownfish',
 'whale', 'tiger', 'sheep', 'parrot', 'octopus', 'koala', 'hen', 'giraffe', 'frog', 'fox', 'flamingo', 'clownfish']
 
-const $board = document.querySelector('.animals')
+const $board = document.querySelector('.gameboard')
+
 const $animal = document.getElementsByClassName('.animal')
 const $front = document.getElementsByClassName('front')
 const $back = document.getElementsByClassName('back')
@@ -35,9 +36,11 @@ function settingCard() {
   shuffle(animalsImg)
   for (let i=0; i<24; i++) {
     $board.innerHTML = $board.innerHTML + `
-    <div class="animal" data-code="${i}" data-value="${animalsImg[i]}">
-      <div class="front"></div>
-      <div class="back"></div>
+    <div class="animals">
+      <div class="animal" data-code="${i}" data-value="${animalsImg[i]}">
+        <div class="front"></div>
+        <div class="back"></div>
+      </div>
     </div>`
 
     $front[i].style.backgroundImage = `url(/assets/animals/zoo.png)`
@@ -90,25 +93,30 @@ $board.addEventListener('click', (e) => {
 
   e.target.parentElement.firstElementChild.style.transform = `rotateY(${180}deg)`
   e.target.parentElement.lastElementChild.style.transform = `rotateY(${0}deg)`
-  getValue(e.target.parentElement.dataset.value)
+
+  getValue(e.target.parentElement.dataset.value, e.target.parentElement)
 })
 
 let openValue = []
-
+let getTarget = []
 
 function getValue(value,target) {
   openValue.push(value)
-
+  getTarget.push(target)
 
   if (openValue.length === 2) {
     stopFlip = true
   }
-  flipCard(openValue)
+  flipCard(openValue,getTarget)
 }
 
-function flipCard(openValue) {
+function flipCard(openValue,getTarget) {
   let firstCard = openValue[0]
   let secondCard = openValue [1]
+
+  let fitstTarget = getTarget[0]
+  let secondTarget = getTarget[1]
+
   
   if (firstCard === secondCard) {
     fitstTarget.classList.add('non-show')
@@ -116,3 +124,4 @@ function flipCard(openValue) {
 
   } 
 }
+

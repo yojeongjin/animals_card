@@ -28,7 +28,7 @@
   top: 0;
 }
 
-.animals {
+.gameboard {
   /* border: 1px solid #fff; */
   width: 600px;
   height: 550px;
@@ -36,6 +36,15 @@
   flex-wrap: wrap;
   position: absolute;
   bottom: 0;
+}
+
+.animals {
+  width: 90px;
+  height: 120px;
+  display: flex;
+  margin: auto;
+  border-radius: 5px;
+  position: relative;
 }
 
 .animal {
