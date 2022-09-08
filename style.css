@@ -73,10 +73,6 @@
   transform: rotateY(-180deg);
 }
 
-.animal:hover .front {
-  transform: rotateY(180deg);
-}
-
-.animal:hover .back {
-  transform: rotateY(0deg);
+.non-show {
+  display: none;
 }
