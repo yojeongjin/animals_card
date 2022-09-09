@@ -1,3 +1,5 @@
+//state
+
 const $stage = document.querySelector('.stage')
 const $time = document.querySelector('.time')
 
@@ -8,12 +10,17 @@ $stage.innerHTML = `STAGE ${stage}`
 
 function countdown() {
   setInterval(function() {
-    console.log(time);
-    time--;
-    $time.innerHTML = `TIME ${time}`
+    if(time > 0) {
+      time--
+      $time.innerHTML = `TIME ${time}`
+    } else {
+      clearInterval(countdown)
+    }
   },1000) 
 }
 
+
+//game
 const animalsImg = 
 ['whale', 'tiger', 'sheep', 'parrot', 'octopus', 'koala', 'hen', 'giraffe', 'frog', 'fox', 'flamingo', 'clownfish',
 'whale', 'tiger', 'sheep', 'parrot', 'octopus', 'koala', 'hen', 'giraffe', 'frog', 'fox', 'flamingo', 'clownfish']
@@ -23,12 +30,18 @@ const $animal = document.getElementsByClassName('animal')
 const $front = document.getElementsByClassName('front')
 const $back = document.getElementsByClassName('back')
 
-
+//game이 시작하면
+function startGame() {
+  settingCard()
+  showBack()
+  // setTimeout(countdown, 2000)
+}
+startGame()
 
 
 //카드 섞기
 function shuffle(animalsImg) {
-  animalsImg.sort(() => Math.random() - 0.5);
+  animalsImg.sort(() => Math.random() - 0.5)
 }
 
 // 카드 셋팅
@@ -47,7 +60,6 @@ function settingCard() {
     $back[i].style.backgroundImage = `url(/assets/animals/${animalsImg[i]}.png)`
   }
 }
-settingCard()
 
 // 시작하면 뒷면 보여주고
 function showBack() {
@@ -61,9 +73,7 @@ function showBack() {
   },50)
 
   showFront()
-  // setTimeout(countdown, 2000)
 }
-showBack()
 
 // 카드를 다시 뒤집을까요?
 let isTurn = true
@@ -119,6 +129,8 @@ function getValue(target) {
   }
 }
 
+let coincideCard = []
+// 카드 두개가 다 뒤집히면 동작
 function flipCard(getTarget) {
 
   console.log(getTarget)
@@ -126,12 +138,16 @@ function flipCard(getTarget) {
   let secondCard = getTarget[1]
   
   if (firstCard.dataset.value === secondCard.dataset.value) {
-    console.log(firstCard)
     firstCard.classList.add('non-show')
     secondCard.classList.add('non-show')
 
+    coincideCard.push(firstCard,secondCard)    
+    console.log(coincideCard.length)
     stopFlip = false
     getTarget.length = 0
+    if (coincideCard.length === 24) {
+      stageClear()
+    }
   } else if (firstCard.dataset.value !== secondCard.dataset.value) {
     setTimeout(function() {
       for (let i=0; i<getTarget.length; i++) {
@@ -142,5 +158,32 @@ function flipCard(getTarget) {
       getTarget.length = 0
     },900)
   }
+}
 
+// 게임 재시작 전 초기화
+function init() {
+  //배열 초기화
+  coincideCard = []
+
+  //stage 올리고
+  stage++
+  $stage.innerHTML = `STAGE ${stage}`
+
+  //stage당 5초씩 감소
+  if(stage < 20) {
+    time = 60 - (stage * 5)
+  }
+  $time.innerHTML = `TIME ${time}`
+
+  //게임판 초기화
+  $board.innerHTML = ''
+  
+  //showfront초기화
+  isTurn = true
+}
+
+// stage를 끝내면 동작
+function stageClear() {
+  init()
+  startGame()
 }
