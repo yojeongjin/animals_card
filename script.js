@@ -14,16 +14,16 @@ function countdown() {
   },1000) 
 }
 
-
 const animalsImg = 
 ['whale', 'tiger', 'sheep', 'parrot', 'octopus', 'koala', 'hen', 'giraffe', 'frog', 'fox', 'flamingo', 'clownfish',
 'whale', 'tiger', 'sheep', 'parrot', 'octopus', 'koala', 'hen', 'giraffe', 'frog', 'fox', 'flamingo', 'clownfish']
 
-const $board = document.querySelector('.gameboard')
-
-const $animal = document.getElementsByClassName('.animal')
+const $board = document.querySelector('.game-board')
+const $animal = document.getElementsByClassName('animal')
 const $front = document.getElementsByClassName('front')
 const $back = document.getElementsByClassName('back')
+
+
 
 
 //카드 섞기
@@ -85,16 +85,19 @@ function showFront() {
 // 아직 뒤집지 마세요
 let stopFlip = false
 
-$board.addEventListener('click', (e) => {
+$board.addEventListener('click', function(e) {
   isTurn = false
   if (stopFlip) {
     return
   }
 
-  e.target.parentElement.firstElementChild.style.transform = `rotateY(${180}deg)`
-  e.target.parentElement.lastElementChild.style.transform = `rotateY(${0}deg)`
+  if(e.target.parentElement.className === 'animal'){
+    e.target.parentElement.firstElementChild.style.transform = `rotateY(${180}deg)`
+    e.target.parentElement.lastElementChild.style.transform = `rotateY(${0}deg)`
+  } else {
+    return
+  }
 
-  
   let getTarget = getValue(e.target.parentElement)
 
   if (getTarget.length === 2) {
@@ -116,9 +119,6 @@ function getValue(target) {
   }
 }
 
-
-
-
 function flipCard(getTarget) {
 
   console.log(getTarget)
@@ -126,6 +126,7 @@ function flipCard(getTarget) {
   let secondCard = getTarget[1]
   
   if (firstCard.dataset.value === secondCard.dataset.value) {
+    console.log(firstCard)
     firstCard.classList.add('non-show')
     secondCard.classList.add('non-show')
 
@@ -141,4 +142,5 @@ function flipCard(getTarget) {
       getTarget.length = 0
     },900)
   }
+
 }
