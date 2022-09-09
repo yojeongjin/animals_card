@@ -60,7 +60,7 @@ function showBack() {
     }
   },50)
 
-  // showFront()
+  showFront()
   // setTimeout(countdown, 2000)
 }
 showBack()
@@ -94,34 +94,51 @@ $board.addEventListener('click', (e) => {
   e.target.parentElement.firstElementChild.style.transform = `rotateY(${180}deg)`
   e.target.parentElement.lastElementChild.style.transform = `rotateY(${0}deg)`
 
-  getValue(e.target.parentElement.dataset.value, e.target.parentElement)
+  
+  let getTarget = getValue(e.target.parentElement)
+
+  if (getTarget.length === 2) {
+    stopFlip = true
+
+    flipCard(getTarget)
+  }
 })
 
-let openValue = []
+
 let getTarget = []
+function getValue(target) {
 
-function getValue(value,target) {
-  openValue.push(value)
-  getTarget.push(target)
-
-  if (openValue.length === 2) {
-    stopFlip = true
+  if(stopFlip) {
+    return
+  } else if (stopFlip === false) {
+    getTarget.push(target)
+    return getTarget
   }
-  flipCard(openValue,getTarget)
 }
 
-function flipCard(openValue,getTarget) {
-  let firstCard = openValue[0]
-  let secondCard = openValue [1]
 
-  let fitstTarget = getTarget[0]
-  let secondTarget = getTarget[1]
 
+
+function flipCard(getTarget) {
+
+  console.log(getTarget)
+  let firstCard = getTarget[0]
+  let secondCard = getTarget[1]
   
-  if (firstCard === secondCard) {
-    fitstTarget.classList.add('non-show')
-    secondTarget.classList.add('non-show')
+  if (firstCard.dataset.value === secondCard.dataset.value) {
+    firstCard.classList.add('non-show')
+    secondCard.classList.add('non-show')
 
-  } 
+    stopFlip = false
+    getTarget.length = 0
+  } else if (firstCard.dataset.value !== secondCard.dataset.value) {
+    setTimeout(function() {
+      for (let i=0; i<getTarget.length; i++) {
+        getTarget[i].firstElementChild.style.transform = `rotateY(${0}deg)`
+        getTarget[i].lastElementChild.style.transform = `rotateY(${-180}deg)`
+      }
+      stopFlip = false
+      getTarget.length = 0
+    },900)
+  }
 }
-
