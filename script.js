@@ -137,12 +137,11 @@ function flipCard(getTarget) {
   let firstCard = getTarget[0]
   let secondCard = getTarget[1]
   
-  if (firstCard.dataset.value === secondCard.dataset.value) {
+  if (firstCard.dataset.value === secondCard.dataset.value && firstCard.dataset.code !== secondCard.dataset.code) {
     firstCard.classList.add('non-show')
     secondCard.classList.add('non-show')
 
-    coincideCard.push(firstCard,secondCard)    
-    console.log(coincideCard.length)
+    coincideCard.push(firstCard,secondCard)
     stopFlip = false
     getTarget.length = 0
     if (coincideCard.length === 24) {
@@ -157,6 +156,9 @@ function flipCard(getTarget) {
       stopFlip = false
       getTarget.length = 0
     },900)
+  } else if (firstCard.dataset.code === secondCard.dataset.code) {
+      stopFlip = false
+      getTarget.length = 1
   }
 }
 
