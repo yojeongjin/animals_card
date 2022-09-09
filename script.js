@@ -5,20 +5,20 @@ const $time = document.querySelector('.time')
 
 let stage = 1
 let time = 60
+let timer = 0
 
 $stage.innerHTML = `STAGE ${stage}`
 
-function countdown() {
-  setInterval(function() {
-    if(time > 0) {
-      time--
-      $time.innerHTML = `TIME ${time}`
-    } else {
-      clearInterval(countdown)
-    }
-  },1000) 
-}
 
+function countdown() {
+  timer = setInterval(function() {
+    time--
+    $time.innerHTML = `TIME ${time}`
+    if (time === 0) {
+      clearInterval(timer)
+    }
+  },1000)
+}
 
 //game
 const animalsImg = 
@@ -34,7 +34,7 @@ const $back = document.getElementsByClassName('back')
 function startGame() {
   settingCard()
   showBack()
-  // setTimeout(countdown, 2000)
+  setTimeout(countdown, 2000)
 }
 startGame()
 
@@ -176,7 +176,6 @@ function init() {
     time = 60 - (stage * 5)
   }
   $time.innerHTML = `TIME ${time}`
-
   //게임판 초기화
   $board.innerHTML = ''
   
@@ -186,6 +185,8 @@ function init() {
 
 // stage를 끝내면 동작
 function stageClear() {
+  clearInterval(timer)
+
   init()
   startGame()
 }
