@@ -9,6 +9,13 @@ let timer = 0
 
 $stage.innerHTML = `STAGE ${stage}`
 
+window.onload = function() {
+  $stage.innerHTML = `STAGE ${stage}`
+  $time.innerHTML = `TIME ${time}`
+  
+  startGame()
+}
+
 
 function countdown() {
   timer = setInterval(function() {
@@ -34,10 +41,8 @@ const $back = document.getElementsByClassName('back')
 function startGame() {
   settingCard()
   showBack()
-  setTimeout(countdown, 2000)
+  setTimeout(countdown, 2500)
 }
-startGame()
-
 
 //카드 섞기
 function shuffle(animalsImg) {
@@ -89,7 +94,7 @@ function showFront() {
     } else {
       clearInterval(showFront)
     }
-  },2000)
+  },2800)
 }
 
 // 아직 뒤집지 마세요
@@ -155,7 +160,7 @@ function flipCard(getTarget) {
       }
       stopFlip = false
       getTarget.length = 0
-    },900)
+    },800)
   } else if (firstCard.dataset.code === secondCard.dataset.code) {
       stopFlip = false
       getTarget.length = 1
@@ -183,10 +188,19 @@ function init() {
   isTurn = true
 }
 
+
+const $nextmodal = document.querySelector('.next-modal')
 // stage를 끝내면 동작
 function stageClear() {
   clearInterval(timer)
+  $nextmodal.classList.add('show')
 
-  init()
-  startGame()
+  setTimeout(function() {
+    $nextmodal.classList.remove('show')
+    init()
+    startGame()
+  },2000)
+
 }
+
+

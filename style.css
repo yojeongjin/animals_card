@@ -10,7 +10,6 @@
 .inner {
   width: 600px;
   height: 600px;
-  /* border: 1px solid orange; */
   display: flex;
   justify-content: center;
   align-items: center;
@@ -20,7 +19,6 @@
 .state {
   width: 600px;
   height: 50px;
-  /* border: 1px solid olive; */
   color: aliceblue;
   display: flex;
   justify-content: space-between;
@@ -29,7 +27,6 @@
 }
 
 .game-board {
-  /* border: 1px solid #fff; */
   width: 600px;
   height: 550px;
   display: flex;
@@ -51,7 +48,6 @@
   width: 90px;
   height: 120px;
   display: flex;
-  /* border: 1px solid greenyellow; */
   margin: auto;
   background-color: aliceblue;
   border-radius: 5px;
@@ -80,6 +76,116 @@
 .back {
   background-size: 80px;
   transform: rotateY(-180deg);
+}
+
+.next-modal{
+  background-color: oldlace;
+  width: 300px;
+  height: 100px;
+  border-radius: 50%;
+  position: relative;
+  display: none;
+}
+
+.next-img {
+  width: 150px;
+  height: 150px;
+  position: absolute;
+  rotate: 15deg;
+  top: -5px;
+  right: 80px;
+  animation: bounce_frames 0.3s;
+  animation-direction: alternate;
+  animation-timing-function: cubic-bezier(.5, 0.05, 1, .5);
+  animation-iteration-count: 4;
+}
+@keyframes bounce_frames {
+  from {transform: translate3d(0, -5px, 0);}
+  to {transform: translate3d(0, -20px, 0);}
+}
+
+.next-span {
+  position: absolute;
+  top: 130px;
+  right: 40px;
+  font-size: 20px;
+  font-weight: 800;
+  color: aliceblue;
+}
+
+.over-modal {
+  background-color: bisque;
+  width: 300px;
+  height: 100px;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  top: -50px;
+  display: none;
+}
+
+.over-img {
+  width: 100px;
+  height: 100px;
+  position: absolute;
+}
+
+.over-rabbit {
+  width: 150px;
+  height: 150px;
+  position: absolute;
+  rotate: 15deg;
+  top: -5px;
+  right: 70px;
+}
+
+.continue {
+  position: absolute;
+  bottom: -45px;
+  color: aliceblue;
+  font-size: 30px;
+  font-weight: 800;
+  animation: blink-effect 1s step-end infinite;
+}
+@keyframes blink-effect {
+  50% {
+    opacity: 0;
+  }
+}
+
+.restart {
+  position: absolute;
+  bottom: -85px;
+  left: 75px;
+  font-size: 18px;
+  color: aliceblue;
+  cursor: pointer;
+  padding: 10px 10px;
+}
+
+.restart:hover {
+  color: orange;
+  scale: 1.2;
+}
+
+.end {
+  position: absolute;
+  bottom: -85px;
+  right: 75px;
+  color: aliceblue;
+  cursor: pointer;
+  padding: 10px 10px;
+}
+
+.end:hover{
+  color: orange;
+  scale: 1.2;
+}
+
+.show {
+  display: block;
 }
 
 .non-show {
