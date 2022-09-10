@@ -130,6 +130,7 @@
   width: 100px;
   height: 100px;
   position: absolute;
+  right: 100px;
 }
 
 .over-rabbit {
@@ -144,6 +145,7 @@
 .continue {
   position: absolute;
   bottom: -45px;
+  right: 70px;
   color: aliceblue;
   font-size: 30px;
   font-weight: 800;

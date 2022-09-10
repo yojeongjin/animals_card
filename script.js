@@ -23,6 +23,7 @@ function countdown() {
     $time.innerHTML = `TIME ${time}`
     if (time === 0) {
       clearInterval(timer)
+      gameOver()
     }
   },1000)
 }
@@ -82,17 +83,17 @@ function showBack() {
 
 // 카드를 다시 뒤집을까요?
 let isTurn = true
-
+let frontShow = 0
 // 다시 앞면
 function showFront() {
-  setInterval(function() {
+  frontShow = setInterval(function() {
     if(isTurn){
       for(let i=0; i<24; i++) {
         $front[i].style.transform = `rotateY(${0}deg)`
         $back[i].style.transform = `rotateY(${-180}deg)`
       }
     } else {
-      clearInterval(showFront)
+      clearInterval(frontShow)
     }
   },2800)
 }
@@ -192,6 +193,7 @@ function init() {
 const $nextmodal = document.querySelector('.next-modal')
 // stage를 끝내면 동작
 function stageClear() {
+  clearInterval(frontShow)
   clearInterval(timer)
   $nextmodal.classList.add('show')
 
@@ -200,7 +202,37 @@ function stageClear() {
     init()
     startGame()
   },2000)
-
 }
 
+//game이 끝나면 동작
+const $overmodal = document.querySelector('.over-modal')
+function gameOver() {
+  $board.innerHTML = ''
+  $overmodal.classList.add('show')
+}
 
+//yes를 누르면 동작
+const $restart = document.querySelector('.restart')
+
+function reinit() {
+  stage = 1
+  time = 60
+  isTurn = true
+  coincideCard = []
+}
+
+$restart.addEventListener('click', function() {
+  $overmodal.classList.remove('show')
+  clearInterval(frontShow)
+  clearInterval(timer)
+  $time.innerHTML = `TIME ${60}`
+  reinit()
+  startGame()
+})
+
+//no를 누르면 동작
+const $end = document.querySelector('.end')
+
+$end.addEventListener('click', function() {
+  $overmodal.classList.remove('show')
+})
