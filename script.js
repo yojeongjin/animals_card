@@ -9,14 +9,6 @@ let timer = 0
 
 $stage.innerHTML = `STAGE ${stage}`
 
-window.onload = function() {
-  $stage.innerHTML = `STAGE ${stage}`
-  $time.innerHTML = `TIME ${time}`
-  
-  startGame()
-}
-
-
 function countdown() {
   timer = setInterval(function() {
     time--
@@ -40,6 +32,9 @@ const $back = document.getElementsByClassName('back')
 
 //game이 시작하면
 function startGame() {
+  $stage.innerHTML = `STAGE ${stage}`
+  $time.innerHTML = `TIME ${time}`
+
   settingCard()
   showBack()
   setTimeout(countdown, 2500)
@@ -236,3 +231,5 @@ const $end = document.querySelector('.end')
 $end.addEventListener('click', function() {
   $overmodal.classList.remove('show')
 })
+
+startGame()
