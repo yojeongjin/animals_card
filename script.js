@@ -95,7 +95,7 @@ function showFront() {
     } else {
       clearInterval(frontShow)
     }
-  },2800)
+  },2000)
 }
 
 // 아직 뒤집지 마세요
