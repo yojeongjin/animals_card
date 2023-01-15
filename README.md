@@ -6,8 +6,8 @@
 * 목적
   * 바닐라 자바스크립트로 토이 프로젝트를 만들어보며 자바스크립트의 기초 문법을 익히기 위함
   * 비동기 프로그램 개념, setInterval, clearInterval 등 내부 API 사용법 학습
-* 데모페이지
-  * https://curious-pony-b3cb0b.netlify.app/
+* 데모페이지  
+  [🕹카드게임하러 가기](https://curious-pony-b3cb0b.netlify.app) (📱모바일 환경 제공)
   
 # 🛠 사용기술
 <img src="https://img.shields.io/badge/HTML5-E34F26?style=plastic&logo=HTML5&logoColor=white" /> <img src="https://img.shields.io/badge/CSS-1F8ACB?style=plastic&logo=css3&logoColor=white" /> <img src="https://img.shields.io/badge/JavaScript-F7DF1E?style=plastic&logo=JavaScript&logoColor=fff" /> <img src="https://img.shields.io/badge/Netlify-00C7B7?style=plastic&logo=Netlify&logoColor=fff" />
