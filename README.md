@@ -1,4 +1,6 @@
 # 💻 Project
+![ezgif com-gif-maker (6)](https://user-images.githubusercontent.com/98960420/212526166-f63e3287-9f31-4bf7-bfc7-31090a738b6b.gif)
+
 * 제목 : 카드 게임
 * 기간 : 2022.09.06 - 2022.09.12
 * 목적
